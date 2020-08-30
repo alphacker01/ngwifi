@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlphaComponent } from './alpha/alpha.component';
+import { DeviceComponent } from './device/device.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlphaComponent
+    AlphaComponent,
+    DeviceComponent
   ],
   imports: [
     BrowserModule,
