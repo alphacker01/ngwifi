@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": []
           },
@@ -123,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "wifi"
+    }
+  },
+  "defaultProject": "wifi",
+  "cli": {
+    "analytics": "862a30b6-28da-451c-a7f1-c265f278e9ef"
+  }
 }
