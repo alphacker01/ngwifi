@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlphaComponent } from './alpha/alpha.component';
 import { DeviceComponent } from './device/device.component';
+import { FactureComponent } from './facture/facture.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlphaComponent,
-    DeviceComponent
+    DeviceComponent,
+    FactureComponent
   ],
   imports: [
     BrowserModule,
