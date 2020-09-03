@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FactureComponent implements OnInit {
 
+  a: string = "a property !"
+  b = 1
+  c = true;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getA(){
+    return this.a
+  }
+
+  getB(){
+    return this.b
+  }
+
+  onDisable(){
+    this.c = false;
+  }
 }
