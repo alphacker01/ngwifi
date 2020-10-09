@@ -1,0 +1,13 @@
+
+    <form>
+        <div class="alert alert-danger">
+            <h3>{{ErrorMsg}}</h3>
+        </div>
+        <label>Login</label>
+        <input type="text" name="login" [(ngModel)]="login">
+        <br>
+        <label>Password</label>
+        <input type="text" name="password" [(ngModel)]="password">
+        <br>
+        <button class="btn btn-primary" (click)="onSignIn()">Se connecter</button>
+    </form>

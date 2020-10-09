@@ -1,0 +1,26 @@
+<div class="col-xs-12">
+    <h2>Devices Control Center: Updated on {{lastupdate | async | date: 'short'}}</h2>
+    <ul class="list-group">
+
+      <app-device *ngFor="let device of devices; let i = index"
+       
+                  [deviceName]="device.name" 
+                  [deviceStatus]="device.status" 
+                  [deviceIndex]="i" 
+                  [id]="device.id">
+
+      </app-device>
+
+    </ul>
+</div>
+
+
+<div style="margin-left: 35%;">
+  <button class="btn btn-success" (click)="switchOnAll()">
+    Start All | {{deviceOn }}
+  </button>
+    &nbsp;
+  <button class="btn btn-danger"(click)="switchOffAll()">
+    Stop All | {{deviceOff }}
+  </button>
+</div>

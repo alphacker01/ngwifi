@@ -7,18 +7,6 @@ import { Component,Input,OnInit } from '@angular/core';
 })
 export class AppComponent {
   
-  public isAuth: boolean = false;
  
-  
-  constructor (){
-    setTimeout(
-      ()=>{
-        this.isAuth = true;
-      },4000
-    );
-  }
 
-  onAllumer(){
-    console.log("Start All")
-  }
 }

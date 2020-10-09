@@ -1,25 +1,17 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>My Devices</h2>
-      <ul class="list-group">
-        <app-device deviceName="PC" deviceStatut="On"></app-device>
-        <app-device deviceName="Television" deviceStatut="Off"></app-device>
-        <app-device deviceName="Imprimante" deviceStatut="On"></app-device>
-        <app-device deviceName="Keyboard" deviceStatut="Off"></app-device>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-collapse">
+      <ul>
+        <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
+        <li routerLinkActive="active"><a routerLink="devices">Devices</a></li>
       </ul>
     </div>
   </div>
-<button class="btn btn-success" [disabled]="!isAuth" (click)="onAllumer()">
-  Start All
-</button>
-
-</div>
+</nav>
 
 <div class="container">
-  <div class="row">
-      <div class="col-md-4">
-        <app-facture></app-facture>
-      </div>
+  <div class="row mb-2">
+    <router-outlet></router-outlet>
   </div>
 </div>
+

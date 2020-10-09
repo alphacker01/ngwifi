@@ -6,23 +6,42 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlphaComponent } from './alpha/alpha.component';
 import { DeviceComponent } from './device/device.component';
-import { FactureComponent } from './facture/facture.component';
-import { DeviceOnComponent } from './device-on/device-on.component';
+import { AppareilViewComponent } from './appareil-view/appareil-view.component';
+import { DeviceService } from './service/device.service';
+import { AuthComponent } from './auth/auth.component';
+
+import { Routes, RouterModule } from '@angular/router';
+import { AuthService } from './service/auth.service';
+import { SingleDeviceComponent } from './single-device/single-device.component';
+
+const appRoutes: Routes = [
+
+  { path: 'devices', component: AppareilViewComponent },
+  { path: 'devices/:id', component: SingleDeviceComponent},
+  { path: 'auth', component: AuthComponent},
+  { path: '', component: AppareilViewComponent}
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AlphaComponent,
     DeviceComponent,
-    FactureComponent,
-    DeviceOnComponent
+    AuthComponent,
+    AppareilViewComponent,
+    SingleDeviceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    DeviceService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
