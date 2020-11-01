@@ -1,1 +1,23 @@
-<p>userlist works!</p>
+
+    <ul class="list-group mb-2 p-3" >
+        <li class="list-group-item shadow-sm p-2 mb-2" *ngFor="let user of users"> 
+            <h3> {{user.name }} {{ user.lastName}} </h3>
+            <p>  {{user.email }} </p>
+            <p>he is a {{user.codeIn}} dev </p>
+    
+            <p *ngIf="user.languages && user.languages.length > 0">
+    
+                Cette personne maitrises d'autres langages de programmation
+                <span *ngFor="let language of user.languages">
+                    {{ language }}
+                </span>
+            </p>
+        </li>
+    </ul> 
+
+
+<button class="btn  btn-success">
+    <a routerLink="/new-user">
+        <i class="fa fa-plus"></i>New User
+    </a>
+</button>

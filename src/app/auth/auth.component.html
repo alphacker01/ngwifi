@@ -1,13 +1,28 @@
 
-    <form>
-        <div class="alert alert-danger">
-            <h3>{{ErrorMsg}}</h3>
-        </div>
-        <label>Login</label>
-        <input type="text" name="login" [(ngModel)]="login">
-        <br>
-        <label>Password</label>
-        <input type="text" name="password" [(ngModel)]="password">
-        <br>
-        <button class="btn btn-primary" (click)="onSignIn()">Se connecter</button>
+  
+
+<!-- *** -->
+
+ <form class="form-signin">
+      <div class="text-center mb-4">
+        <h3>{{ErrorMsg}}</h3>
+      </div>
+
+      <div class="form-label-group">
+        <input type="email" id="inputEmail" name="login" [(ngModel)]="login" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputEmail">Email address</label>
+      </div>
+
+      <div class="form-label-group">
+        <input type="password" id="inputPassword"  name="password" [(ngModel)]="password" class="form-control" placeholder="Password" required>
+        <label for="inputPassword">Password</label>
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onSignIn()">Sign in</button>
+      <p class="mt-5 mb-3 text-muted text-center">&copy; 2020-2021</p>
     </form>

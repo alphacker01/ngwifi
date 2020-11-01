@@ -1,44 +1,66 @@
+import { Subject } from 'rxjs'
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+
+
+@Injectable()
 export class DeviceService{
+
 
     public isAllDeviceOn: boolean = false;
     public isAllDeviceOff: boolean = false;
     public deviceOn: number =0;
     public deviceOff: number =0;
 
-    devices = [
-        {
-          id: 1,
-          name: 'Computer',
-          status: 'On',
-          Description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, architecto laboriosam pariatur dignissimos in accusamus quaerat, molestiae nemo natus, libero quam tempore. Reprehenderit eaque sint saepe reiciendis recusandae amet placeat.'
-        },
-        { id: 2,
-          name: 'Television',
-          status: 'Off',
-          Description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, architecto laboriosam pariatur dignissimos in accusamus quaerat, molestiae nemo natus, libero quam tempore. Reprehenderit eaque sint saepe reiciendis recusandae amet placeat.'
-        },
-        {
-          id: 3,
-          name: 'Micro Onde',
-          status: 'On',
-          Description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, architecto laboriosam pariatur dignissimos in accusamus quaerat, molestiae nemo natus, libero quam tempore. Reprehenderit eaque sint saepe reiciendis recusandae amet placeat.'
-        },
-        {
-          id: 4,
-          name: 'Radio',
-          status: 'Off',
-          Description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, architecto laboriosam pariatur dignissimos in accusamus quaerat, molestiae nemo natus, libero quam tempore. Reprehenderit eaque sint saepe reiciendis recusandae amet placeat.'
-        }
-      ];
+    deviceSubject = new Subject<any>();
 
+    devices = [];
+
+      constructor(private httpClient: HttpClient){
+
+      }
+
+
+    public emitDeviceSubject(){
+
+      this.deviceSubject.next(this.devices.slice());
+    }
     
+    public saveDeviceToServer(){
+      this.httpClient.put('https://wifi-49bb1.firebaseio.com/devices.json',this.devices).subscribe(
+
+      (next)=>{
+        console.log("Save Success !" + next);
+      },
+      (error)=>{
+        console.log("erreur "+error);
+      }
+      );
+    }
+
+    getDeviceFromServer(){
+
+      this.httpClient.get<any[]>('https://wifi-49bb1.firebaseio.com/devices.json').subscribe(
+
+        (response)=>{
+
+          this.devices = response;
+          this.emitDeviceSubject();
+        },
+        (error)=>{
+          console.log('Erreur !: ' + error);
+        }
+      );
+    }
     
     public getDeviceById(id: number){
 
       const device = this.devices.find(
-        (s) => {
-          return s.id === id;
+
+        (e) => {
+          return e.id === id;
         }
+
       );
 
       return device;
@@ -108,12 +130,16 @@ export class DeviceService{
     
         for(let device of this.devices){
           device.status = 'On';
+          
+          this.emitDeviceSubject();
         }
     
         this.isAllDeviceOn = true;
         this.isAllDeviceOff = false;
 
         this.resetNumberOnDevice();
+
+        this.saveDeviceToServer();
       }
     
     switchOffAll(){
@@ -126,6 +152,8 @@ export class DeviceService{
         this.isAllDeviceOn = false;
 
         this.resetNumberOffDevice();
+
+        this.saveDeviceToServer();
       }
 
 
@@ -140,5 +168,7 @@ export class DeviceService{
         this.devices[index].status = 'On';
         this.updateNumberOnDevice();
       }
+
+      this.saveDeviceToServer();
     }
 }

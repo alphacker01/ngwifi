@@ -1,6 +1,6 @@
 export class AuthService {
 
-    isAuth: boolean = false;
+    isAuth: boolean = true;
     users = [
 
         {

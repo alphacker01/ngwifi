@@ -6,9 +6,11 @@
 
     <a [routerLink]="[id]">Détail</a>
 
-    <div style="margin-left: 70%;">
-        <button class="btn btn-success" [disabled]="getStatus() === 'On' " (click)="onSwitch()">On</button>
+    <div style="margin-left: 95%;">
+        <button *ngIf="getStatus() === 'Off'; else elseBlock" class="btn btn-success" (click)="onSwitch()">On</button>
             &nbsp;
-        <button class="btn btn-danger"  [disabled]="getStatus() === 'Off' " (click)="onSwitch()">Off</button>
+        <ng-template #elseBlock>
+            <button  class="btn btn-danger"  (click)="onSwitch()">Off</button>
+        </ng-template>
     </div>
 </li>

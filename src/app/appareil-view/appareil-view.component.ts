@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { DeviceService } from '../service/device.service';
 
 @Component({
@@ -13,6 +15,8 @@ export class AppareilViewComponent implements OnInit {
   public deviceOn: number=0;
   public deviceOff: number=0;
 
+  deviceSubscription: Subscription;
+
   
   constructor (private DeviceService: DeviceService){
 
@@ -20,26 +24,30 @@ export class AppareilViewComponent implements OnInit {
 
     this.updateNumberDevice();
 
-    setTimeout(
-      ()=>{
-        this.isAuth = true;
-      },4000
-    );
   }
 
-    
-  lastupdate = new Promise((resolve , reject)=>{
-    const date = new Date();
-    setTimeout(
-      ()=>{
-        resolve(date);
-      },2000
-    );
-  });
-
-  
   ngOnInit(){
 
+    this.deviceSubscription = this.DeviceService.deviceSubject.subscribe(
+
+      (devices: any[]) => {
+        this.devices = devices;
+      }
+    );
+
+    this.DeviceService.emitDeviceSubject();
+    this.fetch();
+
+  }
+
+  save(){
+
+    this.DeviceService.saveDeviceToServer();
+  }
+
+  fetch(){
+
+    this.DeviceService.getDeviceFromServer();
   }
 
   updateNumberDevice(){
@@ -66,6 +74,11 @@ export class AppareilViewComponent implements OnInit {
   switchOffAll(){
     this.DeviceService.switchOffAll();
     this.updateNumberDevice();
+  }
+
+  onSubmit(form: NgForm){
+    
+    console.log(form.value);
   }
 
 }

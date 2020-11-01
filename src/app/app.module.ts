@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { AlphaComponent } from './alpha/alpha.component';
@@ -15,6 +16,7 @@ import { DeviceService } from './service/device.service';
 import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
 import { UserlistComponent } from './userlist/userlist.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +24,8 @@ const appRoutes: Routes = [
   { path: 'devices', component: AppareilViewComponent },
   { path: 'devices/:id', component: SingleDeviceComponent},
   { path: 'auth', component: AuthComponent},
+  { path: 'users', component: UserlistComponent},
+  { path: 'new-user' , component: NewUserComponent },
   { path: '', component: AppareilViewComponent}
 ];
 
@@ -34,12 +38,15 @@ const appRoutes: Routes = [
     AuthComponent,
     AppareilViewComponent,
     SingleDeviceComponent,
-    UserlistComponent
+    UserlistComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

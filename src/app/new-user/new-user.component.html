@@ -1,0 +1,50 @@
+<div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()" >
+
+        <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Prenom</label>
+            <input type="text" id="lastName" class="form-control" formControlName="lastName">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+        </div>
+
+        <div class="form-group">
+            <label for="tel">Telephone</label>
+            <input type="text" id="tel" class="form-control" formControlName="tel">
+        </div>
+
+        <div class="from-group">
+            <label for="codeIn">
+                Dans quel languages programmez vous ?
+            </label>
+            <select id="codeIn" class="form-control" formControlName="codeIn">
+                <option value="JavaScript">JavaScript</option>
+                <option value="Php"> Php </option>
+                <option value="Kotlin"> Kotlin </option>
+            </select>
+        </div>
+
+        <div formArrayName="otherSquils">
+            <h3>Vos langages de programmation</h3>
+
+            <div class="form-group" *ngFor="let otherSquils of getSquils().controls; let i = index">
+                <input type="text" class="form-control" [formControlName]="i">
+            </div>
+
+            <button type="button" class="btn btn-success mb-3" (click)="onAddSquils()">
+                Ajouter Un langage
+            </button>
+        </div>
+
+        <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Enregistrer</button>
+
+    </form>
+</div>
