@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
+import { MatButtonModule } from '@angular/material/button'
 
 import { AppComponent } from './app.component';
 import { AlphaComponent } from './alpha/alpha.component';
@@ -17,6 +18,7 @@ import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
 import { UserlistComponent } from './userlist/userlist.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const appRoutes: Routes = [
@@ -47,7 +49,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    MatButtonModule,
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule
   ],
   providers: [
     DeviceService,

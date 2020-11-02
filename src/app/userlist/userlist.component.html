@@ -12,6 +12,12 @@
                     {{ language }}
                 </span>
             </p>
+
+            <p *ngIf="user.otherSquils && user.otherSquils.length > 0">
+                 <span *ngFor="let squils of user.otherSquils">
+                    {{ squils }}
+                 </span>
+            </p>
         </li>
     </ul> 
 
