@@ -4,7 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
-import { MatButtonModule } from '@angular/material/button'
+import {MatButtonModule} from '@angular/material/button'
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { AlphaComponent } from './alpha/alpha.component';
@@ -50,6 +55,11 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
   ],

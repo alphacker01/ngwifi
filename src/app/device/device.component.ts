@@ -1,4 +1,5 @@
 import { Component, Input ,OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
 import { DeviceService } from '../service/device.service';
 import { AppareilViewComponent } from '../appareil-view/appareil-view.component';
 
@@ -10,7 +11,7 @@ import { AppareilViewComponent } from '../appareil-view/appareil-view.component'
 
 
 export class DeviceComponent implements OnInit {
-
+  value = 'Clear me'
   @Input() deviceName: string;
   @Input() deviceStatus: string;
   @Input() deviceIndex: number;
